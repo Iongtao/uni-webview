@@ -1,0 +1,40 @@
+<template>
+	<view>
+		<web-view class="webview" ref="webview" src="/hybrid/html/test.html" @message="onMessage"
+			@onPostMessage="onPostMessage"></web-view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+
+			}
+		},
+		onLoad() {
+			setTimeout(() => {
+				this.evalJs()
+			}, 1000)
+		},
+		methods: {
+			onMessage(data) {
+				console.log('onmessage', data);
+			},
+			onPostMessage(data) {
+				console.log('onPostMessage', data);
+			},
+			// 调用 webview 内部逻辑
+			evalJs() {
+				this.$refs.webview.evalJs("document.body.style.background ='#00FF00'");
+			}
+		}
+	}
+</script>
+
+<style>
+	.webview {
+		width: 300px;
+		height: 300px;
+	}
+</style>

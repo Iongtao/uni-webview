@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>本地网页</title>
+	</head>
+	<body>
+		<p class="desc">
+			web-view 组件加载本地 html 示例，仅在 App
+			环境下生效。点击下列按钮，跳转至其它页面。
+		</p>
+		<div class="btn-list">
+			<button class="btn btn-red" type="button" id="postMessage">
+				postMessage
+			</button>
+		</div>
+		<!-- uni 的 SDK -->
+		<script
+			type="text/javascript"
+			src="https://unpkg.com/@dcloudio/uni-webview-js@0.0.2/index.js"
+		></script>
+		<script type="text/javascript">
+			document.addEventListener("UniAppJSBridgeReady", function () {
+				document
+					.querySelector("#postMessage")
+					.addEventListener("click", function () {
+						alert('in')
+						uni.postMessage({
+							data: {
+								action: 'message'
+							}
+						});
+					});
+			});
+		</script>
+	</body>
+</html>
